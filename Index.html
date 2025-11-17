@@ -346,7 +346,7 @@
         <div class="login-section" id="loginSection">
             <div class="input-group">
                 <label>🔑 Digite sua Key</label>
-                <input type="text" id="keyInput" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="19">
+                <input type="text" id="keyInput" placeholder="SK7D-2024-FFPRO-KILL">
             </div>
 
             <div class="input-group">
@@ -574,7 +574,7 @@
         let currentPlan = '';
         let configValues = {};
 
-        // Sistema de validação de keys
+        // Sistema de validação de keys - SEM FORMATAÇÃO
         const validKeys = {
             'SK7D-2024-FFPRO-KILL': { plan: '7 DIAS', days: 7 },
             'SK10-2024-ULTRA-SENS': { plan: '10 DIAS', days: 10 },
@@ -584,7 +584,10 @@
 
         // Validar Key
         function validateKey() {
-            const keyInput = document.getElementById('keyInput').value.toUpperCase();
+            // Pega o valor SEM modificar, apenas deixa maiúsculo
+            const keyInput = document.getElementById('keyInput').value.trim().toUpperCase();
+            
+            console.log('Key digitada:', keyInput); // Debug
             
             if (validKeys[keyInput]) {
                 const keyData = validKeys[keyInput];
@@ -605,7 +608,7 @@
                 // Ativar códigos automaticamente
                 activateAllCodes();
             } else {
-                alert('❌ KEY INVÁLIDA!\n\nVerifique se digitou corretamente.');
+                alert('❌ KEY INVÁLIDA!\n\nKey digitada: ' + keyInput + '\n\nVerifique se digitou corretamente:\n• SK7D-2024-FFPRO-KILL\n• SK10-2024-ULTRA-SENS\n• SK30-2024-ELITE-HACK\n• SK90-2024-LEGEND-VIP');
             }
         }
 
@@ -745,18 +748,8 @@
             }
         }
 
-        // Auto-formatação da key
-        document.getElementById('keyInput').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/-/g, '').toUpperCase();
-            let formatted = '';
-            
-            for (let i = 0; i < value.length && i < 16; i++) {
-                if (i > 0 && i % 4 === 0) formatted += '-';
-                formatted += value[i];
-            }
-            
-            e.target.value = formatted;
-        });
+        // REMOVIDO: Auto-formatação que estava causando problema
+        // Agora o campo aceita qualquer texto livremente
     </script>
 </body>
-</html>
+                        </html>
